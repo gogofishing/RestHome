@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开启使用开发模式，详细错误提示 -->
+	 <constant name="struts.devMode" value="true" />
+	<!-- 将对象交给spring管理 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 指定资源编码类型 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 浏览器缓存 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 更改请求后缀，默认是action,去掉，设置为 ， -->
+	<constant name="struts.action.extension" value=","></constant>
+	
+	<!-- 拦截器配置 -->
+	<package name="abstract_struts" abstract="true" extends="struts-default" namespace="/">
+	  	<interceptors>
+ 			<interceptor name="addLog" class="com.resthome.interceptor.StrutsInterceptor" />
+			<interceptor-stack name="myInterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="addLog" />
+			</interceptor-stack>
+		</interceptors> 
+
+		 <default-interceptor-ref name="myInterceptor" />
+
+		<global-results>
+			<result name="checkLoginFail">/fail.jsp</result>
+		</global-results>
+	</package>
+</struts>    
