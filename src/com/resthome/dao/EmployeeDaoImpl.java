@@ -20,6 +20,7 @@ public class EmployeeDaoImpl extends BaseDaoImpl implements EmployeeDaoInter {
 	public String updateEmployee(String hql) {
 		// TODO Auto-generated method stub
 		return super.updateByHql(hql);
+
 	}
 
 	@Override
